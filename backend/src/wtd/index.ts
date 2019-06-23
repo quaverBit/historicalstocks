@@ -2,7 +2,7 @@ import axios, { AxiosInstance, AxiosResponse } from 'axios';
 
 class WtdClient {
   request: AxiosInstance;
-  private static accessKey = { api_token: 'z57kDImo1DkTMx4AlcwBD1FaRYS578lDfnIS6VWKOT5WW8BF3QLEiuAkRYzf'};
+  private static accessKey = { api_token: process.env.API_KEY_WTD};
 
   constructor() {
     this.request = axios.create({

@@ -5,7 +5,7 @@ const qs = require('qs');
 
 class FixerClient {
   private request: AxiosInstance;
-  private static accessKey = { access_key: 'b0cc1270b8b87253fd451633a3f67dd0' };
+  private static accessKey = { access_key: process.env.API_KEY_FIXER };
 
   constructor() {
     this.request = axios.create({

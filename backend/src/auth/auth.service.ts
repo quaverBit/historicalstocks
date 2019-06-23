@@ -20,10 +20,9 @@ export class AuthService {
       }
       const isMatch = await userData.comparePasswords(user.password);
       if(!isMatch) throw new UnauthorizedException('invalid password');
-      const payload = jwt.sign({ id: userData.id, name: userData.name }, 'thisisasecret');
+      const payload = jwt.sign({ id: userData.id, name: userData.name }, process.env.SECRET_JWT);
       return {
         access_token: payload,
-        status: 200
       };
     } catch (ex) {
       throw ex;
@@ -31,7 +30,11 @@ export class AuthService {
   }
 
   public async register(user: User): Promise<any> {
-    return await this.userService.create(user);
+    const userData = await this.userService.create(user);
+    const payload = jwt.sign({ id: userData.id, name: userData.name }, process.env.SECRET_JWT);
+    return {
+      access_token: payload,
+    }
   }
 
   public async verify(payload) {
