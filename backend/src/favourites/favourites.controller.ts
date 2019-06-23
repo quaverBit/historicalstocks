@@ -9,7 +9,6 @@ export class FavouritesController {
   @Get()
   @UseGuards(AuthGuard('jwt'))
   async userfaves(@Request() req){
-    console.log(req.user);
     return this.FavouritesService.getUserFavorites(req.user);
   }  
 
