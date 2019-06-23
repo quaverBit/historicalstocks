@@ -1,0 +1,11 @@
+.terminalRoot {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+footer {
+  margin-top: auto;
+  min-width: 100%;
+  /* border: 1px solid black; */
+}

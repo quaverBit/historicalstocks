@@ -23,6 +23,9 @@ export class AuthService {
       const payload = jwt.sign({ id: userData.id, name: userData.name }, process.env.SECRET_JWT);
       return {
         access_token: payload,
+        user: {
+          name: userData.name,
+        }
       };
     } catch (ex) {
       throw ex;
@@ -34,6 +37,9 @@ export class AuthService {
     const payload = jwt.sign({ id: userData.id, name: userData.name }, process.env.SECRET_JWT);
     return {
       access_token: payload,
+      user: {
+        name: userData.name,
+      }
     }
   }
 
