@@ -24,12 +24,12 @@ export class User {
   @PrimaryGeneratedColumn()
   id: number;
 
+  @Column()
+  name: string;
+
   @Column({
     unique: true,
   })
-  name: string;
-
-  @Column()
   email: string;
 
   @Column()
@@ -38,15 +38,12 @@ export class User {
   @OneToMany((type) => Favourite, (favourite:Favourite) => favourite.user)
   favourites: Favourite[];
 
-  // @BeforeInsert()
-  // async hashPassword() {
-  //   this.password = await bcrypt.hash(this.password, 10);
-  // }
-
   // Methods
   async comparePasswords(password): Promise<boolean> {
     return await bcryptComparePromise(password, this.password);
   }
+
+  // Triggers
 
   @BeforeInsert()
   async passwordHashing() {

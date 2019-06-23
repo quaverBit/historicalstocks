@@ -1,17 +1,18 @@
 import { Entity, Column, PrimaryGeneratedColumn, ManyToOne } from 'typeorm';
-import { User } from '../auth/user/user.entity';
-
 
 @Entity()
-export class Favourite {
+export class Logging {
   @PrimaryGeneratedColumn()
   id: number;
+  
+  @Column()
+  url: string;
 
   @Column()
-  symbol: string;
+  method: string;
 
-  @ManyToOne(type => User, (user:User) => user.favourites)
-  user: User;
+  @Column()
+  time: number;
 
   @Column({ type: 'int', nullable: true})
   userId: number | null;

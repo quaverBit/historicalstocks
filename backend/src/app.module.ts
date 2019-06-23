@@ -5,10 +5,8 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { AuthModule } from './auth/auth.module';
 import { StocksModule } from './stocks/stocks.module';
 import { FavouritesModule } from './favourites/favourites.module';
-
-
-const { env } = process;
-
+import { APP_INTERCEPTOR } from '@nestjs/core';
+import { LoggingInterceptor } from './interceptors/logging.interceptor';
 
 @Module({
   imports: [
@@ -23,6 +21,12 @@ const { env } = process;
     FavouritesModule,
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [
+    {
+      provide: APP_INTERCEPTOR,
+      useClass: LoggingInterceptor,
+    },
+    AppService
+  ],
 })
 export class AppModule {}
