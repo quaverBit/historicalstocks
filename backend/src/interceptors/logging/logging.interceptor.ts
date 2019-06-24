@@ -35,7 +35,6 @@ export class LoggingInterceptor implements NestInterceptor {
         switch(extension) {
           case 'xml':
             req.res.type('application/xml');
-            console.log(js2xmlparser.parse('response', data));
             return js2xmlparser.parse('response', data);
           default:
             return {data};

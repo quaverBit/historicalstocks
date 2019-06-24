@@ -1,7 +1,4 @@
 import StockStorage from '../services/stockStorage';
-import stockStorage from '../services/stockStorage';
-
-console.log('.'+ ' '.repeat(3) + '.');
 
 const unifyString = (size, stringArg) => {
   return ' '.repeat(size - stringArg.length) + stringArg;
@@ -84,7 +81,7 @@ export default {
     const [, operation, ...symbols] = commandArgs;
     switch(operation){
       case 'add': {
-        StockStorage.addFavs(symbols);
+        StockStorage.addFavs(symbols, StockStorage.date, StockStorage.currency);
         print(`added ${symbols.join(' ')}`);
         break;
       }
@@ -113,5 +110,7 @@ export default {
 }
 
 export const stockDescriptions = {
-  stock: 'manage stocks\nto add:\nstock add <symbol>\nto rm:\nstock rm <symbol>',
+  stock: 'manage stocks\nto add:\n   stock add <symbol>\nto rm:\n   stock rm <symbol>\nChange date:\n   stock set date YYYY-MM-DD\nshow stocks added:\n   stock display',
+  fav: 'manage favourites\nto add:\n   fav add <symbol>\nto rm:\n   fav rm <symbol>\nChange date:\n   favourite set date YYYY-MM-DD\nshow favourites added:\n   fav display',
+
 }

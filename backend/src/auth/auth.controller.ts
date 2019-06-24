@@ -16,7 +16,6 @@ export class AuthController {
 
   @Post(AuthNavigation.REGISTER)
   async login(@Body() user: User, @Request() req: any): Promise<any> {
-    console.log('bananas');
     const toSend = await this.authService.register(user);
     req.user = toSend.user;
     return toSend;

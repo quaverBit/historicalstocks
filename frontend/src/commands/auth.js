@@ -1,10 +1,12 @@
 import AuthService from '../services/auth';
 import UserService from '../services/User';
+import StockSorage from '../services/stockStorage';
+import StockService from '../services/stocks';
+
 export default {
   register: (commandArgs, print) => {
     const [, ...args] = commandArgs;
-    AuthService.register({name: args[0], email: args[1], password: args[2]}).then(({ data }) => {
-      console.log(data);
+    AuthService.register({name: args[0], email: args[1], password: args[2]}).then(({ data: { data } }) => {
       UserService.login({ name: args[0] }, data.access_token );
       print(`$Welcome ${args[0]}!`);
     })
@@ -13,6 +15,10 @@ export default {
     const [, ...args] = commandArgs;
     AuthService.login({ email: args[0], password: args[1] }).then(({ data: { data } }) => {
       UserService.login(data.user , data.access_token );
+      StockService.getFavs(StockSorage.date, StockSorage.currency).then(({ data: { data }})=> {
+        console.log(data);
+        StockSorage.initializeFavs(data);
+      })
       print(`$Welcome ${data.user.name}!`);
     })
   },

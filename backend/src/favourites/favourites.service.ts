@@ -10,8 +10,8 @@ export class FavouritesService {
     private readonly FavouriteRepository: Repository<Favourite>,
   ) {}
   
-  async getUserFavorites(user) {
-    return await this.FavouriteRepository.find({ userId: user.id });
+  async getUserFavorites(userId) {
+    return await this.FavouriteRepository.find({ userId: userId });
   }
   
   async createUserFavourite(symbols, userId) {

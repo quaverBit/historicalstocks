@@ -9,12 +9,12 @@ class StockService extends AuthenticatedRequest {
       date,
     }})
   }
-  addFavs(symbolsArray) {
-    return this.request.post('/favourites/create', { symbols: symbolsArray });
+  addFavs(symbolsArray, date, currency) {
+    return this.request.post('/favourites/create', { symbols: symbolsArray, date, currency });
   }
 
-  getFavs(date) {
-    return this.request.get('/favourites/index', { params: { date } });
+  getFavs(date, currency) {
+    return this.request.get('/favourites/index', { params: { date, currency } });
   }
 
 }

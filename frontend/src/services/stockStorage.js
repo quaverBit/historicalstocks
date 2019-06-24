@@ -23,15 +23,17 @@ class StockStorage{
     upperCaseArray.forEach(sym => { delete this.stocks[sym]});    
   }
 
+  initializeFavs(favs) {
+    this.favs = favs;
+  }
 
 
-  addFavs(symbolArray){
+  addFavs(symbolArray, date, currency){
+    console.log(symbolArray);
     const upperCaseArray = symbolArray.map(sym => sym.toUpperCase());
     const newSymbols = upperCaseArray.filter(sym => !this.favs[sym]);
-    StockService.addFavs(newSymbols).then(() => {
-      StockService.getStocks(newSymbols, this.date).then(({data: data}) => {
-        this.favs = { ...this.favs, ...data};
-      });
+    StockService.addFavs(newSymbols, date, currency).then(({ data: { data } }) => {
+      this.favs = { ...this.favs, ...data };
     })
   }
 
