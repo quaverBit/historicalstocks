@@ -7,17 +7,17 @@ import { AuthNavigation } from './auth.navigation'
 export class AuthController {
   constructor(private readonly authService: AuthService) { }
 
-  @Post(AuthNavigation.REGISTER)
+  @Post(AuthNavigation.LOGIN)
   async register(@Body() user: User, @Request() req): Promise<any> {
     const toSend = await this.authService.login(user);
     req.user = toSend.user;
     return toSend;
   }
 
-  @Post(AuthNavigation.LOGIN)
-  async login(@Body() user: User, @Request() req, @Param() test): Promise<any> {
-    console.log(test);
-    const toSend = await this.authService.login(user);
+  @Post(AuthNavigation.REGISTER)
+  async login(@Body() user: User, @Request() req: any): Promise<any> {
+    console.log('bananas');
+    const toSend = await this.authService.register(user);
     req.user = toSend.user;
     return toSend;
   }
