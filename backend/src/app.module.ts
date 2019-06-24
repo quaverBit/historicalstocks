@@ -6,7 +6,8 @@ import { AuthModule } from './auth/auth.module';
 import { StocksModule } from './stocks/stocks.module';
 import { FavouritesModule } from './favourites/favourites.module';
 import { APP_INTERCEPTOR } from '@nestjs/core';
-import { LoggingInterceptor } from './interceptors/logging.interceptor';
+import { LoggingInterceptor } from './interceptors/logging/logging.interceptor';
+// import { LoggingService } from './interceptors/logging/logging.service';
 
 @Module({
   imports: [
@@ -25,6 +26,8 @@ import { LoggingInterceptor } from './interceptors/logging.interceptor';
     {
       provide: APP_INTERCEPTOR,
       useClass: LoggingInterceptor,
+      // useValue: LoggingService,
+
     },
     AppService
   ],

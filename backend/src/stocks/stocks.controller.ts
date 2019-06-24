@@ -1,6 +1,5 @@
 import { Controller, Get, UseGuards, Query, UseInterceptors } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
-import { LoggingInterceptor } from '../interceptors/logging.interceptor';
 import { client as fixerClient } from '../fixer';
 import { client as wtdClient } from '../wtd';
 

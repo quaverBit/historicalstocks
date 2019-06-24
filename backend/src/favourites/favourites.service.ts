@@ -11,8 +11,11 @@ export class FavouritesService {
   ) {}
   
   async getUserFavorites(user) {
-    await this.FavouriteRepository.save({ symbol: 'TSLA', userId: user.id })
     return await this.FavouriteRepository.find({ userId: user.id });
+  }
+  
+  async createUserFavourite(body, userId) {
+    return await this.FavouriteRepository.save({ symbol: body.symbol, userId });
   }
 
 }
