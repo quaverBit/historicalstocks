@@ -1,15 +1,22 @@
 import React, { Component } from 'react';
-import { Container, TextField } from '@material-ui/core';
-import './Terminal.css';
+import { connect } from 'react-redux';
+import Terminal from 'terminal-in-react';
 
 class Terminal extends Component {
+  constructor(){
+    super();
+    this.commands = {
+      ...authCommands,
+      ...stockCommands,
+    }
+    this.commandDescriptions = {
+      ...authDescriptions,
+      ...stockDescriptions,
+    }
+  }
+
   render() {
-    return (
-      <Container className="terminalRoot">
-        <div>Lines display</div>
-        <footer><TextField fullWidth></TextField></footer>
-      </Container>
-    )
+    <Terminal commands={this.commands} descriptions={this.commandDescriptions}></Terminal> 
   }
 }
 

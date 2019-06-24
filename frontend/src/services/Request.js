@@ -2,12 +2,13 @@ import axios from 'axios';
 import UserService from './User';
 
 class AuthenticatedRequest {
+  request = axios.create({
+    baseURL: 'http://localhost:3000/'
+  });
   constructor() {
-    this.request = axios.create({
-      baseURL: 'http://localhost:3000/'
-    });
     this.request.interceptors.request.use((config) => {
       config.headers.authorization = UserService.getToken();
+      return config;
     })
 
   }

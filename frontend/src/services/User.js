@@ -3,6 +3,7 @@ class User {
   token = null;
 
   login(user, token) {
+    console.log(user, token);
     this.user = user;
     this.token = token;
   }
@@ -14,7 +15,7 @@ class User {
 
   getToken() {
     if(!this.token) throw new Error('Unauthenticated');
-    return this.token
+    return `Bearer ${this.token}`;
   }
 
 }

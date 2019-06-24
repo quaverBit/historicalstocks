@@ -14,8 +14,8 @@ export class FavouritesService {
     return await this.FavouriteRepository.find({ userId: user.id });
   }
   
-  async createUserFavourite(body, userId) {
-    return await this.FavouriteRepository.save({ symbol: body.symbol, userId });
+  async createUserFavourite(symbols, userId) {
+    return await this.FavouriteRepository.save(symbols.map(symbol => ({symbol, userId})));
   }
 
 }

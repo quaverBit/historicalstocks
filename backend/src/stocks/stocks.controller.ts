@@ -1,12 +1,13 @@
 import { Controller, Get, UseGuards, Query, UseInterceptors } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
+import { StocksNavigation } from './stocks.navigation'
 import { client as fixerClient } from '../fixer';
 import { client as wtdClient } from '../wtd';
 
 @Controller('stocks')
 export class StocksController {
 
-  @Get()
+  @Get(StocksNavigation.INDEX)
   @UseGuards(AuthGuard('jwt'))
   async getStocks(@Query() query){
     // const data = await fixerClient.index(query);

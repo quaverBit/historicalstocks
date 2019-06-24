@@ -3,7 +3,8 @@ import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Terminal from 'terminal-in-react';
-import authCommands from './commands/auth';
+import authCommands, { authDescriptions } from './commands/auth';
+import stockCommands, { stockDescriptions } from './commands/stock';
 import './App.css';
 
 class App extends Component {
@@ -11,6 +12,11 @@ class App extends Component {
     super();
     this.commands = {
       ...authCommands,
+      ...stockCommands,
+    }
+    this.commandDescriptions = {
+      ...authDescriptions,
+      ...stockDescriptions,
     }
   }
 
@@ -19,10 +25,7 @@ class App extends Component {
       <Grid container className="appRoot" >
         <CssBaseline />
         <Grid item sm={6} xs={12} className="terminalRoot">
-          <Terminal commands={this.commands}></Terminal> 
-        </Grid>
-        <Grid item sm={6} xs={12} className="listRoot">
-          Lista
+          <Terminal commands={this.commands} descriptions={this.commandDescriptions}></Terminal> 
         </Grid>
       </Grid>
     );

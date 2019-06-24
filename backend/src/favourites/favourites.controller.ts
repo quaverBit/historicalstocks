@@ -16,7 +16,7 @@ export class FavouritesController {
   @Post(FavouritesNavigation.FAVCREATE)
   async createfav(@Body() body, @Request() req){
     console.log(req.user);
-    return this.FavouritesService.createUserFavourite(body, req.user.id);
+    return this.FavouritesService.createUserFavourite(body.symbols, req.user.id);
   }
 
 }
