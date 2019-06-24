@@ -28,6 +28,7 @@
     "@nestjs/typeorm": "^6.1.2",
     "@types/bcryptjs": "^2.4.2",
     "bcryptjs": "^2.4.3",
+    "decimal.js": "^10.2.0",
     "dotenv": "^8.0.0",
     "js2xmlparser": "^4.0.0",
     "jsonwebtoken": "^8.5.1",

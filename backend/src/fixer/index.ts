@@ -16,8 +16,8 @@ class FixerClient {
 
 
   async index(query?:any): Promise<any> {
-    const { data } = await this.request.get('/latest', {params: {
-      ...query,
+    const { data } = await this.request.get(query.date, {params: {
+      symbols: `USD,${query.currency.toUpperCase()}`,
       access_key: process.env.API_KEY_FIXER,
     },})
     return data;
